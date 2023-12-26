@@ -11,10 +11,10 @@ import {
   InputErrorGroup,
 } from './NewPhoneForm.styled';
 import { addContact } from '../../redux/contactsSlise';
-import { getContacts } from '../../redux/selectors';
+import { selectContacts } from '../../redux/selectors';
 
 export const FormContact = () => {
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const handleAdd = newContact => {
