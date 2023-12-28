@@ -12,7 +12,7 @@ import {
 } from '../redux/selectors';
 import { useEffect } from 'react';
 import { fetchContacts } from '../redux/operations';
-import { Message } from './App.styled';
+import { Message, ErrorMessage } from './App.styled';
 
 export const App = () => {
   const isLoading = useSelector(selectIsLoading);
@@ -30,7 +30,9 @@ export const App = () => {
         <FormContact />
       </Section>
       {isLoading && !error && <Message>Request in progress...</Message>}
-      {error && <Message>Oops! {error}. Try to reload the page</Message>}
+      {error && (
+        <ErrorMessage>Oops! {error}. Try to reload the page</ErrorMessage>
+      )}
       {items.length > 0 && (
         <Section title="Contacts">
           <SearchBar />
