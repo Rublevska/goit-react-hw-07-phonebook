@@ -4,6 +4,7 @@ export const theme = {
     mainFormColor: '#f0e9f0',
     mainTextColor: '#2b8ac8',
     accentTextColor: '#2474a8',
+    errorTextColor: '#900C3F',
     bottomColor: '#e5d2ea',
     bottomAccentColor: '#bdbbe5',
     borderColor: '#bdbbe5',

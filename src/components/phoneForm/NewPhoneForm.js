@@ -10,7 +10,7 @@ import {
   ErrorMessage,
   InputErrorGroup,
 } from './NewPhoneForm.styled';
-import { addContact } from '../../redux/contactsSlise';
+import { addContact } from '../../redux/operations';
 import { selectContacts } from '../../redux/selectors';
 
 export const FormContact = () => {
@@ -19,22 +19,21 @@ export const FormContact = () => {
 
   const handleAdd = newContact => {
     const duplicateContact = contacts.find(
-      contact =>
-        contact.firstName.toLowerCase() === newContact.firstName.toLowerCase()
+      contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
     );
     if (duplicateContact !== undefined) {
-      return alert(`${duplicateContact.firstName} is already in contacts`);
+      return alert(`${duplicateContact.name} is already in contacts`);
     } else {
       dispatch(addContact(newContact));
     }
   };
 
   const PhoneValidateSchema = Yup.object().shape({
-    firstName: Yup.string()
+    name: Yup.string()
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
       .required('Required'),
-    phoneNumber: Yup.string()
+    phone: Yup.string()
       .min(7, 'Too Short!')
       .max(12, 'Too Long!')
       .required('Required'),
@@ -44,9 +43,8 @@ export const FormContact = () => {
     <div>
       <Formik
         initialValues={{
-          id: '',
-          firstName: '',
-          phoneNumber: '',
+          name: '',
+          phone: '',
         }}
         validationSchema={PhoneValidateSchema}
         onSubmit={(values, actions) => {
@@ -56,22 +54,18 @@ export const FormContact = () => {
       >
         <Form>
           <FormInputGroup>
-            <label htmlFor="firstName">Name</label>
+            <label htmlFor="name">Name</label>
             <InputErrorGroup>
-              <Field id="firstName" name="firstName" placeholder="Luna" />
-              <ErrorMessage name="firstName" component="span" />
+              <Field id="name" name="name" placeholder="Luna" />
+              <ErrorMessage name="name" component="span" />
             </InputErrorGroup>
           </FormInputGroup>
 
           <FormInputGroup>
-            <label htmlFor="phoneNumber">Number</label>
+            <label htmlFor="phone">Number</label>
             <InputErrorGroup>
-              <Field
-                id="phoneNumber"
-                name="phoneNumber"
-                placeholder="1234567"
-              />
-              <ErrorMessage name="phoneNumber" component="span" />
+              <Field id="phone" name="phone" placeholder="1234567" />
+              <ErrorMessage name="phone" component="span" />
             </InputErrorGroup>
           </FormInputGroup>
 
