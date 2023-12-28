@@ -29,7 +29,7 @@ export const App = () => {
       <Section title="Phonebook">
         <FormContact />
       </Section>
-      {isLoading && !error && <p>Request in progress...</p>}
+      {isLoading && !error && <Message>Request in progress...</Message>}
       {error && <Message>Oops! {error}. Try to reload the page</Message>}
       {items.length > 0 && (
         <Section title="Contacts">
